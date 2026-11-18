@@ -4,159 +4,331 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surya Kencana Plastik - Pasar Modern Batununggal</title>
-    <script src="https://tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cloudflare.com">
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
         html {
             scroll-behavior: smooth;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        body {
+            background-color: #fdf2f8;
+            color: #1f2937;
+            line-height: 1.6;
+        }
+        a {
+            text-decoration: none;
+        }
+        /* Navbar */
+        .navbar {
+            background: linear-gradient(90deg, #6b21a8, #db2777);
+            color: white;
+            padding: 14px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        }
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-weight: 800;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+        }
+        .nav-links {
+            display: none;
+        }
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+                gap: 20px;
+            }
+            .nav-links a {
+                color: #fce7f3;
+                font-size: 0.9rem;
+                font-weight: 500;
+            }
+            .nav-links a:hover {
+                color: #ffffff;
+            }
+        }
+        .btn-wa-nav {
+            background-color: #22c55e;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #581c87 0%, #7e22ce 50%, #db2777 100%);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .badge {
+            display: inline-block;
+            background-color: rgba(59, 7, 100, 0.6);
+            color: #fbcfe8;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid rgba(244, 114, 182, 0.4);
+        }
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin: 16px 0 12px;
+            line-height: 1.2;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            color: #fce7f3;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        .hero-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 450px;
+            margin: 0 auto;
+        }
+        @media (min-width: 600px) {
+            .hero h1 { font-size: 3rem; }
+            .hero-buttons { flex-direction: row; justify-content: center; }
+        }
+        .btn-primary {
+            background-color: #22c55e;
+            color: white;
+            font-weight: 700;
+            padding: 14px 24px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            display: block;
+        }
+        .btn-secondary {
+            background-color: white;
+            color: #6b21a8;
+            font-weight: 700;
+            padding: 14px 24px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            display: block;
+        }
+        /* Section Produk */
+        .section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+        .section-header h2 {
+            font-size: 1.75rem;
+            color: #3b0764;
+            margin-bottom: 8px;
+        }
+        .section-header p {
+            color: #4b5563;
+            font-size: 0.95rem;
+        }
+        .grid-produk {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        @media (min-width: 640px) {
+            .grid-produk { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 1024px) {
+            .grid-produk { grid-template-columns: repeat(4, 1fr); }
+        }
+        .card {
+            background: white;
+            padding: 24px;
+            border-radius: 14px;
+            border: 1px solid #fbcfe8;
+            box-shadow: 0 2px 8px rgba(219, 39, 119, 0.06);
+        }
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background-color: #fce7f3;
+            color: #db2777;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+        .card:nth-child(even) .card-icon {
+            background-color: #f3e8ff;
+            color: #7e22ce;
+        }
+        .card h3 {
+            color: #3b0764;
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+        }
+        .card p {
+            color: #4b5563;
+            font-size: 0.9rem;
+        }
+        /* Pembayaran */
+        .payment-section {
+            background: linear-gradient(90deg, #f3e8ff, #fce7f3);
+            padding: 45px 20px;
+            text-align: center;
+            border-top: 1px solid #f5d0fe;
+            border-bottom: 1px solid #f5d0fe;
+        }
+        .payment-tag {
+            color: #db2777;
+            font-weight: 800;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .payment-section h2 {
+            color: #3b0764;
+            font-size: 1.6rem;
+            margin: 6px 0 12px;
+        }
+        .payment-badges {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 24px;
+        }
+        .pay-pill {
+            background: white;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 700;
+            color: #6b21a8;
+            border: 1px solid #f9a8d4;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        /* Lokasi */
+        .location-box {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid #fbcfe8;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+        @media (min-width: 768px) {
+            .location-box { grid-template-columns: 1fr 1fr; }
+        }
+        .location-info {
+            padding: 32px;
+        }
+        .location-info h2 {
+            color: #3b0764;
+            margin-bottom: 20px;
+        }
+        .info-item {
+            margin-bottom: 18px;
+        }
+        .info-item h4 {
+            color: #6b21a8;
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+        .info-item p, .info-item a {
+            color: #4b5563;
+            font-size: 0.95rem;
+        }
+        .info-item a {
+            color: #db2777;
+            font-weight: 600;
+            text-decoration: underline;
+        }
+        .map-frame {
+            min-height: 280px;
+            background: #f3e8ff;
+        }
+        /* Footer */
+        footer {
+            background-color: #3b0764;
+            color: #fbcfe8;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9rem;
+        }
+        footer strong {
+            color: white;
+            display: block;
+            font-size: 1.05rem;
+            margin-bottom: 4px;
+        }
+        .copyright {
+            margin-top: 16px;
+            font-size: 0.75rem;
+            color: #d8b4fe;
         }
     </style>
 </head>
-<body class="bg-pink-50/30 text-gray-800 font-sans">
+<body>
 
     <!-- Navbar -->
-    <nav class="bg-gradient-to-r from-purple-800 to-pink-600 text-white shadow-md sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <i class="fa-solid fa-bag-shopping text-2xl text-pink-200"></i>
-                <span class="font-bold text-lg md:text-xl tracking-wide">SURYA KENCANA PLASTIK</span>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">🛍️ SURYA KENCANA PLASTIK</div>
+            <div class="nav-links">
+                <a href="#beranda">Beranda</a>
+                <a href="#produk">Produk</a>
+                <a href="#pembayaran">Pembayaran</a>
+                <a href="#lokasi">Lokasi & Kontak</a>
             </div>
-            <div class="hidden md:flex space-x-6 text-sm font-medium">
-                <a href="#beranda" class="hover:text-pink-200 transition">Beranda</a>
-                <a href="#produk" class="hover:text-pink-200 transition">Produk</a>
-                <a href="#pembayaran" class="hover:text-pink-200 transition">Pembayaran</a>
-                <a href="#lokasi" class="hover:text-pink-200 transition">Lokasi & Kontak</a>
-            </div>
-            <a href="https://wa.me..." target="_blank" class="bg-green-500 hover:bg-green-600 text-white text-sm font-semibold px-4 py-2 rounded-full flex items-center space-x-1 transition shadow">
-                <i class="fa-brands fa-whatsapp text-lg"></i>
-                <span>Chat WA</span>
+            <a href="https://wa.me..." target="_blank" class="btn-wa-nav">
+                💬 Chat WA
             </a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header id="beranda" class="bg-gradient-to-br from-purple-900 via-purple-700 to-pink-600 text-white py-16 md:py-24 px-4">
-        <div class="max-w-4xl mx-auto text-center">
-            <span class="bg-purple-950/60 text-pink-200 text-xs md:text-sm font-semibold px-3 py-1 rounded-full uppercase tracking-wider border border-pink-400/30">
-                Pasar Modern Batununggal • Bandung
-            </span>
-            <h1 class="text-3xl md:text-5xl font-extrabold mt-4 mb-4 tracking-tight">
-                SURYA KENCANA PLASTIK
-            </h1>
-            <p class="text-lg md:text-2xl text-pink-100 font-medium mb-8">
-                Sedia Macam-Macam Plastik, Kemasan Makanan, & Kebutuhan Usaha Anda
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="https://wa.me" target="_blank" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg flex items-center justify-center space-x-2 transition">
-                    <i class="fa-brands fa-whatsapp text-xl"></i>
-                    <span>Pesan via WhatsApp 1</span>
-                </a>
-                <a href="https://wa.me" target="_blank" class="bg-white text-purple-800 hover:bg-pink-50 font-bold py-3 px-6 rounded-lg shadow-lg flex items-center justify-center space-x-2 transition">
-                    <i class="fa-solid fa-phone text-pink-600"></i>
-                    <span>Hubungi Admin 2</span>
-                </a>
-            </div>
+    <!-- Hero -->
+    <header id="beranda" class="hero">
+        <span class="badge">Pasar Modern Batununggal • Bandung</span>
+        <h1>SURYA KENCANA PLASTIK</h1>
+        <p>Sedia Macam-Macam Plastik, Kemasan Makanan, & Kebutuhan Usaha Anda</p>
+        <div class="hero-buttons">
+            <a href="https://wa.me" target="_blank" class="btn-primary">📱 Pesan via WhatsApp 1</a>
+            <a href="https://wa.me" target="_blank" class="btn-secondary">📞 Hubungi Admin 2</a>
         </div>
     </header>
 
-    <!-- Kategori Produk -->
-    <section id="produk" class="py-16 px-4 max-w-6xl mx-auto">
-        <div class="text-center mb-12">
-            <h2 class="text-2xl md:text-3xl font-bold text-purple-950">Produk Unggulan Kami</h2>
-            <p class="text-gray-600 mt-2">Tersedia pembelian eceran maupun grosir untuk kebutuhan rumah tangga dan UMKM kuliner</p>
+    <!-- Produk -->
+    <section id="produk" class="section">
+        <div class="section-header">
+            <h2>Produk Unggulan Kami</h2>
+            <p>Tersedia pembelian eceran maupun grosir untuk kebutuhan rumah tangga dan UMKM kuliner</p>
         </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <!-- Card 1 -->
-            <div class="bg-white p-6 rounded-xl shadow-sm border border-pink-100 hover:shadow-md hover:border-pink-300 transition">
-                <div class="w-12 h-12 bg-pink-100 text-pink-600 rounded-lg flex items-center justify-center text-2xl mb-4">
-                    <i class="fa-solid fa-bag-shopping"></i>
-                </div>
-                <h3 class="font-bold text-lg text-purple-950 mb-2">Kantong Plastik & Kresek</h3>
-                <p class="text-gray-600 text-sm">Berbagai ukuran kantong kresek (hitam, putih, warna), plastik PE, PP, dan HD untuk belanja maupun kemasan.</p>
+        <div class="grid-produk">
+            <div class="card">
+                <div class="card-icon">🛍️</div>
+                <h3>Kantong Plastik & Kresek</h3>
+                <p>Berbagai ukuran kantong kresek (hitam, putih, warna), plastik PE, PP, dan HD untuk belanja maupun kemasan.</p>
             </div>
-
-            <!-- Card 2 -->
-            <div class="bg-white p-6 rounded-xl shadow-sm border border-purple-100 hover:shadow-md hover:border-purple-300 transition">
-                <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center text-2xl mb-4">
-                    <i class="fa-solid fa-cup-straw"></i>
-                </div>
-                <h3 class="font-bold text-lg text-purple-950 mb-2">Gelas Cup & Sedotan</h3>
-                <p class="text-gray-600 text-sm">Gelas plastik datar & cembung (berbagai ukuran oz), tutup gelas, serta aneka sedotan higienis.</p>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="bg-white p-6 rounded-xl shadow-sm border border-pink-100 hover:shadow-md hover:border-pink-300 transition">
-                <div class="w-12 h-12 bg-fuchsia-100 text-fuchsia-600 rounded-lg flex items-center justify-center text-2xl mb-4">
-                    <i class="fa-solid fa-box-open"></i>
-                </div>
-                <h3 class="font-bold text-lg text-purple-950 mb-2">Kemasan Makanan & Mika</h3>
-                <p class="text-gray-600 text-sm">Kotak makan thinwall, mika kue, styrofoam, kertas nasi, hingga dus kemasan makanan.</p>
-            </div>
-
-            <!-- Card 4 -->
-            <div class="bg-white p-6 rounded-xl shadow-sm border border-purple-100 hover:shadow-md hover:border-purple-300 transition">
-                <div class="w-12 h-12 bg-rose-100 text-rose-600 rounded-lg flex items-center justify-center text-2xl mb-4">
-                    <i class="fa-solid fa-utensils"></i>
-                </div>
-                <h3 class="font-bold text-lg text-purple-950 mb-2">Tisu & Alat Makan</h3>
-                <p class="text-gray-600 text-sm">Tisu wajah, tisu makan (Jolly, dll), sendok garpu plastik, tusuk sate, serta kebutuhan dapur lainnya.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pembayaran Digital -->
-    <section id="pembayaran" class="bg-gradient-to-r from-purple-50 to-pink-50 py-12 px-4 border-y border-pink-200/60">
-        <div class="max-w-4xl mx-auto text-center">
-            <span class="text-pink-600 font-bold text-sm uppercase tracking-wider">Pasar NgaDigi • Bank BJB</span>
-            <h2 class="text-2xl font-bold text-purple-950 mt-1 mb-4">Mendukung Pembayaran Digital & Tunai</h2>
-            <p class="text-gray-600 mb-6 text-sm md:text-base">
-                Belanja lebih praktis dan cepat di kios kami menggunakan pembayaran nontunai resmi dari ekosistem Pasar Modern Batununggal.
-            </p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <div class="bg-white px-6 py-3 rounded-lg shadow-sm border border-pink-200 font-bold text-purple-800 flex items-center space-x-2">
-                    <i class="fa-solid fa-qrcode text-pink-600"></i>
-                    <span>QRIS / bjb DigiCash</span>
-                </div>
-                <div class="bg-white px-6 py-3 rounded-lg shadow-sm border border-purple-200 font-bold text-purple-800 flex items-center space-x-2">
-                    <i class="fa-solid fa-building-columns text-purple-600"></i>
-                    <span>Transfer Bank BJB</span>
-                </div>
-                <div class="bg-white px-6 py-3 rounded-lg shadow-sm border border-pink-200 font-bold text-green-700 flex items-center space-x-2">
-                    <i class="fa-solid fa-money-bill-wave text-green-600"></i>
-                    <span>Tunai (Cash)</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Lokasi & Kontak -->
-    <section id="lokasi" class="py-16 px-4 max-w-6xl mx-auto">
-        <div class="bg-white rounded-2xl shadow-md border border-pink-100 overflow-hidden grid grid-cols-1 md:grid-cols-2">
-            <div class="p-8 md:p-10 flex flex-col justify-center">
-                <h2 class="text-2xl font-bold text-purple-950 mb-6">Kunjungi Toko Kami</h2>
-                
-                <div class="space-y-4">
-                    <div class="flex items-start space-x-3">
-                        <i class="fa-solid fa-location-dot text-pink-600 text-xl mt-1"></i>
-                        <div>
-                            <h4 class="font-bold text-purple-950">Alamat Kios</h4>
-                            <p class="text-gray-600 text-sm">Pasar Modern Batununggal Kios B06-03<br>Batununggal Indah, Kota Bandung, Jawa Barat</p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-start space-x-3">
-                        <i class="fa-brands fa-whatsapp text-green-500 text-xl mt-1"></i>
-                        <div>
-                            <h4 class="font-bold text-purple-950">Telepon / WhatsApp</h4>
-                            <p class="text-gray-600 text-sm">
-                                <a href="https://wa.me" class="hover:text-pink-600 underline">0858-8118-0932</a><br>
-                                <a href="https://wa.me" class="hover:text-pink-600 underline">0813-1218-9118</a>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-start space-x-3">
-                        <i class="fa-solid fa-clock text-purple-600 text-xl mt-1"></i>
-                        <div>
-                            <h4 class="font-bold text-purple-950">Jam Operasional Pasar</h4>
+            <div class="card">
